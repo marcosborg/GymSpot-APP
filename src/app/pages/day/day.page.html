@@ -44,10 +44,6 @@
         </ion-item>
     </ion-list>
 
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="selectedSlots.length > 0">
-        <ion-fab-button color="danger" (click)="goCart()">
-            <ion-icon name="cart-outline"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+    <app-cart-button />
 
 </ion-content>

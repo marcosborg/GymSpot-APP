@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { PreferencesService } from '../services/preferences.service';
 import { Router } from '@angular/router';
+import { CartButtonComponent } from '../components/cart-button/cart-button.component';
 
 @Component({
   selector: 'app-tab3',
@@ -51,8 +52,8 @@ import { Router } from '@angular/router';
     FormsModule,
     IonSelect,
     IonSelectOption,
+    CartButtonComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab3Page implements OnInit {
   constructor(

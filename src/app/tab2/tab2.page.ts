@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonNote, IonText, IonLabel } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonNote, IonText, IonLabel, LoadingController } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
+import { ApiService } from '../services/api.service';
+import { PreferencesService } from '../services/preferences.service';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-tab2',
@@ -8,22 +15,53 @@ import { HeaderComponent } from '../components/header/header.component';
   styleUrls: ['tab2.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, 
-    IonToolbar, 
-    IonTitle, 
-    IonContent, 
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
     HeaderComponent,
     IonList,
     IonItem,
     IonNote,
     IonText,
-    IonLabel
+    IonLabel,
+    CommonModule
   ],
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    private api: ApiService,
+    private loadingController: LoadingController,
+    private preferences: PreferencesService
+  ) { }
 
-  
+  access_token: any;
+  rented_slots: any = [];
+
+  ionViewWillEnter() {
+    this.inicialize();
+  }
+
+  inicialize() {
+    this.loadingController.create().then((loading) => {
+      loading.present();
+      this.preferences.checkName('access_token').then((resp: any) => {
+        this.access_token = resp.value;
+        if (this.access_token) {
+          let data = {
+            access_token: this.access_token
+          }
+          this.api.rentedSlots(data).subscribe((resp: any) => {
+            loading.dismiss();
+            this.rented_slots = resp;
+            console.log(this.rented_slots);
+          });
+        } else {
+          loading.dismiss();
+        }
+      });
+    });
+  }
 
 }

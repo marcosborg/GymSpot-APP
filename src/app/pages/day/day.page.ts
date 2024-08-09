@@ -1,13 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoadingController, IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon, IonFab, IonFabButton, IonModal, IonButtons, IonImg } from '@ionic/angular/standalone';
+import {
+  LoadingController,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonLabel,
+  IonThumbnail,
+  IonNote,
+  IonList,
+  IonButton,
+  IonIcon,
+  IonModal,
+  IonButtons,
+  IonImg
+} from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, chevronForwardOutline, cartOutline } from 'ionicons/icons';
 import { PreferencesService } from 'src/app/services/preferences.service';
+import { CartButtonComponent } from 'src/app/components/cart-button/cart-button.component';
 
 @Component({
   selector: 'app-day',
@@ -29,11 +46,10 @@ import { PreferencesService } from 'src/app/services/preferences.service';
     IonList,
     IonButton,
     IonIcon,
-    IonFab,
-    IonFabButton,
     IonModal,
     IonButtons,
-    IonImg
+    IonImg,
+    CartButtonComponent
   ]
 })
 export class DayPage implements OnInit {
@@ -43,7 +59,6 @@ export class DayPage implements OnInit {
     private api: ApiService,
     private loadingController: LoadingController,
     private preferences: PreferencesService,
-    private router: Router
   ) {
     addIcons({ chevronBackOutline, chevronForwardOutline, cartOutline })
   }
@@ -136,10 +151,6 @@ export class DayPage implements OnInit {
 
   isSlotSelected(slot: any) {
     return this.selectedSlots.some(selectedSlot => selectedSlot.start === slot.start && selectedSlot.end === slot.end && selectedSlot.timestamp === slot.timestamp);
-  }
-
-  goCart() {
-    this.router.navigateByUrl('/cart');
   }
 
 }

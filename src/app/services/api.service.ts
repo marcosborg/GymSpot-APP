@@ -8,14 +8,23 @@ export class ApiService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    if (this.sandbox) {
+      this.url = 'http://127.0.0.1:8000/api/v2/';
+      this.protected_url = 'http://127.0.0.1:8000/api/v1/';
+      this.auth_url = 'http://127.0.0.1:8000/api/';
+    } else {
+      this.url = 'https://gymspot.pt/api/v2/';
+      this.protected_url = 'https://gymspot.pt/api/v1/';
+      this.auth_url = 'https://gymspot.pt/api/';
+    }
+  }
 
-  url: string = 'https://gymspot.pt/api/v2/';
-  protected_url: string = 'https://gymspot.pt/api/v1/';
-  auth_url: string = 'https://gymspot.pt/api/';
-  //url: string = 'http://127.0.0.1:8000/api/v2/';
-  //protected_url: string = 'http://127.0.0.1:8000/api/v1/';
-  //auth_url: string = 'http://127.0.0.1:8000/api/';
+  sandbox: boolean = true;
+
+  url: any;
+  protected_url: any;
+  auth_url: any;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -186,4 +195,35 @@ export class ApiService {
     };
     return this.http.get(this.protected_url + 'delete-photo/' + data.photo_id, this.httpOptions);
   }
+
+  payByMbway(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.auth_url + 'payments/mbway', data, this.httpOptions);
+  }
+
+  checkMbwayStatus(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.auth_url + 'payments/check-mbway-status/' + data.requestId, this.httpOptions);
+  }
+
+  rentedSlots(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.protected_url + 'rented-slots', this.httpOptions);
+  }
+
 }

@@ -7,6 +7,7 @@
             <ion-card-subtitle>Confirme as suas reservas</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
+            <p class="ion-padding-bottom"><strong>Valor a pagar: </strong>{{ totalAmount | currency:'EUR':'symbol':'1.2-2' }}</p>
             <ion-list>
                 <ion-item-sliding *ngFor="let selectedSlot of selectedSlots; let i = index; let last = last">
                     <ion-item [lines]="last ? 'none' : 'full'">
@@ -26,6 +27,7 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar color="danger">
-        <ion-button expand="full" fill="clear" color="light" (click)="pay()">Finalizar a reserva e pagar</ion-button>
+        <ion-button expand="full" fill="clear" color="light" routerLink="/tabs/tab3" *ngIf="!access_token">Fazer login antes de pagar</ion-button>
+        <ion-button expand="full" fill="clear" color="light" (click)="pay()" *ngIf="access_token">Finalizar a reserva e pagar</ion-button>
     </ion-toolbar>
 </ion-footer>
