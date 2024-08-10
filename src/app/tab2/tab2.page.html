@@ -1,12 +1,19 @@
 <app-header></app-header>
 
 <ion-content>
-    <ion-list [inset]="true">
+    <ion-card *ngIf="!access_token">
+        <ion-card-content>
+            <p class="ion-padding-bottom">Deve fazer login para aceder às suas reservas.</p>
+            <ion-button size="small" color="danger" routerLink="/tabs/tab3">Login</ion-button>
+        </ion-card-content>
+    </ion-card>
+    <ion-list [inset]="true" *ngIf="access_token">
         <ion-item *ngFor="let rented_slot of rented_slots">
             <ion-label>
                 <strong>{{ rented_slot.spot.name }}</strong><br>
                 <ion-note color="medium" class="ion-text-wrap">
-                    {{ rented_slot.start_date_time | date: 'shortDate' : '' : 'pt' }}<br>({{ rented_slot.start_date_time | date: 'HH:mm' }} - {{ rented_slot.end_date_time | date: 'HH:mm' }})
+                    {{ rented_slot.start_date_time | date: 'shortDate' : '' : 'pt' }}<br>({{ rented_slot.start_date_time
+                    | date: 'HH:mm' }} - {{ rented_slot.end_date_time | date: 'HH:mm' }})
                 </ion-note>
             </ion-label>
             <div class="metadata-end-wrapper" slot="end">

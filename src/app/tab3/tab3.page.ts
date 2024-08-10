@@ -52,7 +52,7 @@ import { CartButtonComponent } from '../components/cart-button/cart-button.compo
     FormsModule,
     IonSelect,
     IonSelectOption,
-    CartButtonComponent
+    CartButtonComponent,
   ],
 })
 export class Tab3Page implements OnInit {
@@ -96,16 +96,21 @@ export class Tab3Page implements OnInit {
           }
           this.api.user(data).subscribe((resp: any) => {
             this.user = resp;
-            if (this.user.client) {
-              this.client = this.user.client;
+            if (this.user) {
+              if (this.user.client) {
+                this.client = this.user.client;
+              }
+              this.api.countries(data).subscribe((resp: any) => {
+                loading.dismiss();
+                this.countries = resp.data;
+              }, (err) => {
+                loading.dismiss();
+                console.log(err);
+              });
+            } else {
+              loading.dismiss();
+              this.logout()
             }
-            this.api.countries(data).subscribe((resp: any) => {
-              loading.dismiss();
-              this.countries = resp.data;
-            }, (err) => {
-              loading.dismiss();
-              console.log(err);
-            });
           }, (err) => {
             loading.dismiss();
             console.log(err);

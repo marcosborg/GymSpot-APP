@@ -1,11 +1,26 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonNote, IonText, IonLabel, LoadingController } from '@ionic/angular/standalone';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonNote,
+  IonText,
+  IonLabel,
+  LoadingController,
+  IonButton,
+  IonCard,
+  IonCardContent,
+} from '@ionic/angular/standalone';
 import { HeaderComponent } from '../components/header/header.component';
 import { ApiService } from '../services/api.service';
 import { PreferencesService } from '../services/preferences.service';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
+import { RouterLink } from '@angular/router';
 
 registerLocaleData(localePt);
 
@@ -25,7 +40,11 @@ registerLocaleData(localePt);
     IonNote,
     IonText,
     IonLabel,
-    CommonModule
+    CommonModule,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    RouterLink
   ],
 })
 export class Tab2Page {
