@@ -102,7 +102,13 @@ export class Tab3Page implements OnInit {
             this.api.countries(data).subscribe((resp: any) => {
               loading.dismiss();
               this.countries = resp.data;
+            }, (err) => {
+              loading.dismiss();
+              console.log(err);
             });
+          }, (err) => {
+            loading.dismiss();
+            console.log(err);
           });
         }
       });
