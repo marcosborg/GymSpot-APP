@@ -55,7 +55,6 @@ export class Tab2Page {
           this.api.rentedSlots(data).subscribe((resp: any) => {
             loading.dismiss();
             this.rented_slots = resp;
-            console.log(this.rented_slots);
           });
         } else {
           loading.dismiss();

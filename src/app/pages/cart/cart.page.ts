@@ -3,6 +3,7 @@ import { LOCALE_ID } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { FormsModule } from '@angular/forms';
+import { IonicSafeString } from '@ionic/core';
 import {
   IonContent,
   IonHeader,
@@ -289,7 +290,70 @@ export class CartPage {
         {
           text: 'Referência multibanco',
           handler: () => {
-            
+            this.loadingController.create().then((loading) => {
+              loading.present();
+              let data = {
+                access_token: this.access_token,
+                cart: JSON.stringify(this.selectedSlots),
+                amount: this.totalAmount,
+              }
+              this.api.payByMultibanco(data).subscribe((resp: any) => {
+                loading.dismiss();
+                this.alertController.create({
+                  header: 'Pagamento multibanco',
+                  subHeader: 'Referência para pagamento',
+                  message: 'A referência foi enviada para o seu email. O acesso ao spot ficará disponível em RESERVAS assim que o pagamento for realizado.',
+                  backdropDismiss: false,
+                  inputs: [
+                    {
+                      label: 'Entidade',
+                      value: resp.Entity,
+                      disabled: true,
+                    },
+                    {
+                      label: 'Referência',
+                      value: resp.Reference,
+                      disabled: true
+                    },
+                    {
+                      label: 'Montante',
+                      value: `${parseFloat(resp.Amount).toFixed(2)} €`,
+                      disabled: true
+                    }
+                  ],
+                  buttons: [
+                    {
+                      text: 'Concluir',
+                      handler: () => {
+                        this.preferences.removeName('selected_slots').then(() => {
+                          setTimeout(() => {
+                            this.router.navigateByUrl('/tabs/tab2');
+                          }, 500);
+                        });
+                      }
+                    }
+                  ]
+                }).then((alert) => {
+                  alert.present();
+                });
+              }, (err) => {
+                loading.dismiss();
+                console.log(err);
+                this.alertController.create({
+                  header: 'Erro no meio de pagamento',
+                  message: 'Pode tentar novamente o checkout.',
+                  backdropDismiss: false,
+                  buttons: [
+                    {
+                      text: 'Tentar novamente',
+                      role: 'cancel'
+                    }
+                  ]
+                }).then((alert) => {
+                  alert.present();
+                });
+              });
+            });
           }
         },
         {

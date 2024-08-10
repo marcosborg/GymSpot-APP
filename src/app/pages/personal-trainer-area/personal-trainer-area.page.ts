@@ -123,7 +123,6 @@ export class PersonalTrainerAreaPage {
                 this.other_photos = this.personal_trainer.photos.slice(1).map((photo: any) => photo);
               }
               this.personal_trainer.spots = spotsArray;
-              console.log(this.personal_trainer);
             } else {
               this.personal_trainer = {
                 name: this.user.name,
