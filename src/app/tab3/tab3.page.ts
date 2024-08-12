@@ -115,6 +115,9 @@ export class Tab3Page implements OnInit {
             loading.dismiss();
             console.log(err);
           });
+        } else {
+          loading.dismiss();
+          this.logout()
         }
       });
     });

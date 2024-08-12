@@ -21,6 +21,8 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { RouterLink } from '@angular/router';
+import { formatDate } from '@angular/common';
+
 
 registerLocaleData(localePt);
 
@@ -73,7 +75,17 @@ export class Tab2Page {
           }
           this.api.rentedSlots(data).subscribe((resp: any) => {
             loading.dismiss();
-            this.rented_slots = resp;
+            this.rented_slots = resp.map((slot: any) => {
+              const startDate = new Date(slot.start_date_time.replace(' ', 'T'));
+              const endDate = new Date(slot.end_date_time.replace(' ', 'T'));
+  
+              return {
+                ...slot,
+                formattedStartDate: formatDate(startDate, 'shortDate', 'pt'),
+                formattedStartTime: formatDate(startDate, 'HH:mm', 'pt'),
+                formattedEndTime: formatDate(endDate, 'HH:mm', 'pt'),
+              };
+            });
           });
         } else {
           loading.dismiss();
@@ -81,5 +93,7 @@ export class Tab2Page {
       });
     });
   }
+  
+  
 
 }

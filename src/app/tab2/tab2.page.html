@@ -12,8 +12,7 @@
             <ion-label>
                 <strong>{{ rented_slot.spot.name }}</strong><br>
                 <ion-note color="medium" class="ion-text-wrap">
-                    {{ rented_slot.start_date_time | date: 'shortDate' : '' : 'pt' }}<br>({{ rented_slot.start_date_time
-                    | date: 'HH:mm' }} - {{ rented_slot.end_date_time | date: 'HH:mm' }})
+                    {{ rented_slot.formattedStartDate }}<br>({{ rented_slot.formattedStartTime }} - {{ rented_slot.formattedEndTime }})
                 </ion-note>
             </ion-label>
             <div class="metadata-end-wrapper" slot="end">

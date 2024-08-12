@@ -78,6 +78,7 @@ export class CartPage {
   ) { }
 
   ionViewWillEnter() {
+    console.log('ok');
     this.inicialize();
   }
 
@@ -85,24 +86,33 @@ export class CartPage {
     this.loadingController.create().then((loading) => {
       loading.present();
       this.preferences.checkName('access_token').then((resp: any) => {
-        this.access_token = resp.value;
-        this.preferences.checkName('selected_slots').then((resp: any) => {
-          let slots = JSON.parse(resp.value) || [];
-          const now = new Date();
-          this.selectedSlots = slots.filter((slot: any) => {
-            const slotTime = new Date(slot.timestamp);
-            return slotTime >= now;
+        setTimeout(() => {
+          console.log(resp);
+          this.access_token = resp.value;
+          console.log(this.access_token);
+          this.preferences.checkName('selected_slots').then((resp: any) => {
+            setTimeout(() => {
+              this.selectedSlots = JSON.parse(resp.value) || [];
+
+              console.log(this.selectedSlots);
+              /*
+              const now = new Date();
+              this.selectedSlots = slots.filter((slot: any) => {
+                const slotTime = new Date(slot.timestamp);
+                return slotTime >= now;
+              });
+              */
+              // Calcular o total
+              this.totalAmount = this.selectedSlots.reduce((total: number, slot: any) => {
+                return total + parseFloat(slot.spot.price);
+              }, 0);
+
+              // Salvar slots atualizados nas preferências
+              //this.preferences.setName('selected_slots', JSON.stringify(this.selectedSlots));
+              loading.dismiss();
+            }, 500);
           });
-
-          // Calcular o total
-          this.totalAmount = this.selectedSlots.reduce((total: number, slot: any) => {
-            return total + parseFloat(slot.spot.price);
-          }, 0);
-
-          // Salvar slots atualizados nas preferências
-          this.preferences.setName('selected_slots', JSON.stringify(this.selectedSlots));
-          loading.dismiss();
-        });
+        }, 500);
       });
     });
   }
