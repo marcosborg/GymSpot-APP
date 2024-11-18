@@ -5,7 +5,7 @@
             rgba(0, 0, 0, 0.5));
 
     .subtitle {
-        color: #f5634b;
+        color: #ffffff;
     }
 
     ion-button {
@@ -72,7 +72,7 @@ ion-img.logo {
     width: 130px;
     height: 130px;
     margin: 10px;
-    border: solid 3px rgb(245, 99, 75);
+    border: solid 3px #6d4ada;
     background-size: cover;
     background-position: center top;
     display: inline-block;
@@ -92,7 +92,7 @@ ion-img.logo {
     position: absolute;
     bottom: 80px; /* Posiciona o balão acima da imagem */
     left: 100px; /* Ajuste para deixar espaço para o bico */
-    background-color: #f5634b;
+    background-color: #6d4ada;
     color: white;
     padding: 10px;
     border-radius: 10px;
@@ -113,7 +113,7 @@ ion-img.logo {
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-right: 10px solid #f5634b; /* Muda a cor do bico para o lado direito */
+    border-right: 10px solid #6d4ada; /* Muda a cor do bico para o lado direito */
     z-index: 9999; /* Garante que o bico fique acima do personagem */
     opacity: 0;
     animation: fadeIn 2s forwards;

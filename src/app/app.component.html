@@ -2,7 +2,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
-        <ion-toolbar color="secondary">
+        <ion-toolbar color="primary">
           <ion-img src="../../../assets/logo-dark-v2.png" class="ion-margin ion-padding"></ion-img>
         </ion-toolbar>
       </ion-header>
@@ -10,7 +10,7 @@
         <ion-list id="labels-list">
           <ion-list-header color="light">
             <ion-label style="font-size: 16px;">Reserve um Spot</ion-label>
-            <ion-button color="danger" routerLink="/spots">Ver todos</ion-button>
+            <ion-button color="primary" routerLink="/spots">Ver todos</ion-button>
           </ion-list-header>
           <ion-item button color="light" *ngFor="let spot of spots" routerLink="/spot/{{ spot.id }}">
             <ion-avatar class="square" aria-hidden="true" slot="start">
@@ -24,7 +24,7 @@
           </ion-item>
           <ion-list-header color="light">
             <ion-label style="font-size: 16px;">Reserve um<br>Personal Trainer</ion-label>
-            <ion-button color="danger" routerLink="/pts">Ver todos</ion-button>
+            <ion-button color="primary" routerLink="/pts">Ver todos</ion-button>
           </ion-list-header>
           <ion-item button color="light" *ngFor="let pt of pts" routerLink="/pt/{{ pt.id }}">
             <ion-avatar aria-hidden="true" slot="start">
@@ -33,7 +33,7 @@
             <ion-label>
               <h2>{{ pt.name }}</h2>
               <p>
-                <ion-badge style="font-size: 10px; margin-left: 2px;" color="danger" slot="start" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
+                <ion-badge style="font-size: 10px; margin-left: 2px;" color="primary" slot="start" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
               </p>
             </ion-label>
           </ion-item>
