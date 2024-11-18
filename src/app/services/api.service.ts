@@ -236,4 +236,24 @@ export class ApiService {
     return this.http.post(this.auth_url + 'payments/multibanco', data, this.httpOptions);
   }
 
+  createClientData(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'client-datas/create', data, this.httpOptions);
+  }
+
+  updateClientData(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'client-datas/update', data, this.httpOptions);
+  }
+
 }
