@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardContent, IonContent, LoadingController } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonImg, IonInput, IonLabel, IonRow, IonSegment, IonSegmentButton, IonToolbar, LoadingController } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { PreferencesService } from 'src/app/services/preferences.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -17,7 +17,17 @@ import { ApiService } from 'src/app/services/api.service';
     FormsModule,
     HeaderComponent,
     IonCard,
-    IonCardContent
+    IonCardContent,
+    IonSegment,
+    IonSegmentButton,
+    IonLabel,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonImg,
+    IonButton,
+    IonInput,
+    IonToolbar
   ]
 })
 export class FitnessGuidePage {
@@ -33,6 +43,16 @@ export class FitnessGuidePage {
   spot_id: any = 9;
   request: string = '';
   items: any;
+  tab: string = 'guia_fitness';
+  toon: boolean = true;
+  video: boolean = false;
+  video_link: string = 'https://gymspot.pt/storage/160/673af90ac542a_video.mp4';
+  clickedItem: any = null;
+  messages: { text: string; sender: string }[] = [
+    { text: 'Olá! Como posso te ajudar?', sender: 'bot' },
+    { text: 'Quero saber mais sobre o guia fitness.', sender: 'me' },
+  ];
+  newMessage: string = '';
 
   ionViewWillEnter() {
     this.inicialize();
@@ -50,11 +70,11 @@ export class FitnessGuidePage {
           this.api.user(data).subscribe((resp) => {
             this.user = resp;
             this.api.getSpot(this.spot_id).subscribe((resp: any) => {
-              let items = resp.data.items;
+              this.items = resp.data.items;
               let equipment = '';
-              items.forEach((element: any, index: number) => {
+              this.items.forEach((element: any, index: number) => {
                 equipment += element.name;
-                if (index === items.length - 1) {
+                if (index === this.items.length - 1) {
                   equipment += '.';
                 } else {
                   equipment += ', ';
@@ -80,7 +100,7 @@ export class FitnessGuidePage {
               html += 'O spot GymSpot onde me encontro, possui como equipamento: ' + equipment + '. '
               html += 'Com base nestas informações quero que me prepares um treino de fitness para hoje, adequado à minha realidade e objetivos, e com base no quipamento que te passei e que se encontra disponível neste spot.';
               this.request = html;
-              console.log(this.request);
+              console.log(this.items);
               loading.dismiss();
             });
           });
@@ -89,6 +109,30 @@ export class FitnessGuidePage {
         }
       });
     });
+  }
+
+  hideToon() {
+    this.toon = !this.toon;
+  }
+
+  openVideo(original_url: any) {
+    this.video = false;
+    setTimeout(() => {
+      this.video_link = original_url;
+      this.video = true
+    }, 500);
+  }
+
+  toggleOpacity(item: any) {
+    this.clickedItem = item; // Define o item clicado
+  }
+
+  sendMessage() {
+    if (this.newMessage.trim()) {
+      this.messages.push({ text: this.newMessage, sender: 'me' });
+      this.newMessage = '';
+      // Aqui você pode adicionar lógica para enviar a mensagem para a API.
+    }
   }
 
 }
