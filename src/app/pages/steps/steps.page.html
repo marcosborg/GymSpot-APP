@@ -4,7 +4,7 @@
   <ion-img src="../../../assets/logo-dark-v2.png" class="ion-margin ion-padding"></ion-img>
   <ion-list *ngIf="steps" inset="true">
     <ion-item *ngFor="let step of steps" color="secondary">
-      <ion-note slot="start" color="danger"><h1>{{ step.number.toString().padStart(2, '0') }}</h1></ion-note>
+      <ion-note slot="start" color="primary"><h1>{{ step.number.toString().padStart(2, '0') }}</h1></ion-note>
       <ion-label>
         {{ step.title }}
         <p>{{ step.text }}</p>

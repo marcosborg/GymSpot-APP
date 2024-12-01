@@ -35,7 +35,7 @@
         <a [href]="'tel:' + pt.phone">{{ pt.phone }}</a>
       </div>
       <div class="ion-margin-top">
-        <ion-badge (click)="goSpot(spot.id)" color="danger" style="margin: 2px;" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
+        <ion-badge (click)="goSpot(spot.id)" color="primary" style="margin: 2px;" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
       </div>
       <h1 style="margin-top: 20px; font-size: 25px; font-weight: 700; color: #ea4335; line-height: 16px;">{{ pt.price }}<small>€</small>
         <br><span style="font-size: 12px; color: #cccccc; font-weight: normal;">(preço por meia hora)</span></h1>

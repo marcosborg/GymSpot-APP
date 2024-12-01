@@ -18,26 +18,26 @@
         </small>
       </ion-note>
       <br>
-      <ion-button size="small" fill="outline" color="danger" class="ion-margin-vertical"
+      <ion-button size="small" fill="outline" color="primary" class="ion-margin-vertical"
         (click)="setOpen(true)">Equipamentos</ion-button>
-      <h1><ion-text color="danger">{{ spot.price }}<small>€</small></ion-text></h1>
+      <h1><ion-text color="primary">{{ spot.price }}<small>€</small></ion-text></h1>
       <span style="font-size: 12px;">(Por cada slot de 30 minutos - capacidade {{ spot.capacity }} utilizadores)</span>
     </ion-card-content>
   </ion-card>
   <ion-card>
     <ion-card-content>
-      <h1><ion-text color="danger">Lembre-se!</ion-text></h1>
+      <h1><ion-text color="primary">Lembre-se!</ion-text></h1>
       <div class="ion-text-justify">
         <p>Pode também reservar um personal trainer para o ajudar a tirar o máximo proveito do seu treino!</p>
         <p>Consulte as suas opções na secção PT.</p>
-        <p><ion-text color="danger">Reserve diretamente por telefone ou email.</ion-text></p>
+        <p><ion-text color="primary">Reserve diretamente por telefone ou email.</ion-text></p>
       </div>
     </ion-card-content>
   </ion-card>
 
   <ion-modal [isOpen]="isModalOpen">
     <ion-header>
-      <ion-toolbar color="danger">
+      <ion-toolbar color="primary">
         <ion-title>{{ spot.name }}</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="setOpen(false)">Fechar</ion-button>
@@ -67,7 +67,7 @@
     </ion-header>
     <ion-content>
       <div class="ion-text-center grid ion-margin">
-        <div class="row" style="background: var(--ion-color-danger); color: #ffffff; align-items: center;">
+        <div class="row" style="background: var(--ion-color-primary); color: #ffffff; align-items: center;">
           <div class="col ion-text-left" (click)="changeMonth(month.previousMonthLink)"><strong><ion-icon
                 name="chevron-back-circle-outline"></ion-icon></strong></div>
           <div class="col"><strong style="text-transform: capitalize;">{{ month.name }}<br><small>{{ month.year
@@ -240,7 +240,7 @@
 
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="primary">
     <ion-button expand="full" fill="clear" color="light" (click)="isCalendarOpen = !isCalendarOpen">Agendar</ion-button>
   </ion-toolbar>
 </ion-footer>

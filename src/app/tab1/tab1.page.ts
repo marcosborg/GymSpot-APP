@@ -73,6 +73,7 @@ export class Tab1Page implements OnInit {
     });
     this.api.getSpots(10).subscribe((resp: any) => {
       this.spots = resp.data;
+      console.log(this.spots);
     });
   }
 
@@ -89,6 +90,12 @@ export class Tab1Page implements OnInit {
 
   openGallery(gallery_id: any) {
     this.isGalleryOpen = true;
+  }
+
+  goSpot(spot_id: any, soon: any) {
+    if (soon == false) {
+      this.router.navigateByUrl('/spot/' + spot_id);
+    }
   }
 
 }

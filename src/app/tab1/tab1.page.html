@@ -4,7 +4,7 @@
 
   <swiper-container *ngIf="spots" pagination="false" autoplay="true" slides-per-view="2" [autoplay]="{ delay: 2500 }">
     <swiper-slide *ngFor="let spot of spots">
-      <ion-card routerLink="/spot/{{ spot.id }}"
+      <ion-card (click)="goSpot(spot.id, spot.soon)"
         style="background: url('{{ spot.photos[0].original_url }}') center center; background-size: cover;"
         class="location-card">
         <ion-card-header>
@@ -12,8 +12,13 @@
           <ion-card-subtitle style="color: #cccccc; font-size: 12px;">{{ spot.location.title }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <h2 style="line-height: 14px;"><span style="color: #ffffff; font-size: 25px;">€{{ spot.price }}</span><span
-              style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
+          <div *ngIf="!spot.soon">
+            <h2 style="line-height: 14px;"><span style="color: #ffffff; font-size: 25px;">€{{ spot.price }}</span><span
+                style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
+          </div>
+          <div *ngIf="spot.soon">
+            <h3 class="ion-padding-top">BREVEMENTE</h3>
+          </div>
         </ion-card-content>
       </ion-card>
     </swiper-slide>
@@ -27,7 +32,8 @@
         <h2 style="font-size: 25px;">
           {{ slide.title }}<br>
           <span class="subtitle">{{ slide.subtitle }}</span><br>
-          <ion-button size="small" color="primary" class="ion-margin-top" *ngFor="let about of abouts" (click)="showAbout(about.text, about.image.original_url)">Saber mais</ion-button>
+          <ion-button size="small" color="primary" class="ion-margin-top" *ngFor="let about of abouts"
+            (click)="showAbout(about.text, about.image.original_url)">Saber mais</ion-button>
         </h2>
       </div>
     </swiper-slide>
@@ -62,8 +68,9 @@
           <ion-card-title style="font-size: 18px;">{{ location.title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-button color="primary" size="small" class="ion-float-right ion-margin-bottom"
+          <ion-button *ngIf="!location.soon" color="primary" size="small" class="ion-float-right ion-margin-bottom"
             (click)="router.navigateByUrl('location/' + location.id)">Reserve já</ion-button>
+          <h4 *ngIf="location.soon" class="primary">BREVEMENTE</h4>
         </ion-card-content>
       </ion-card>
     </swiper-slide>

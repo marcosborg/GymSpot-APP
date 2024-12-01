@@ -61,7 +61,7 @@
                 src="{{ personal_trainer.photos.length > 0 ? personal_trainer.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}" />
             </ion-thumbnail>
             <ion-label class="small">Pode tirar a fotografia de perfil e outras de complemento.</ion-label>
-            <ion-button size="large" color="danger" (click)="setOpen(true)"><ion-icon
+            <ion-button size="large" color="primary" (click)="setOpen(true)"><ion-icon
                 name="camera-outline"></ion-icon></ion-button>
           </ion-item>
         </ion-list>
@@ -82,7 +82,7 @@
           <ion-input [(ngModel)]="personal_trainer.tiktok" label="Tiktok" labelPlacement="stacked"></ion-input>
         </ion-item>
       </ion-list>
-      <ion-button (click)="updateProfessionalData()" class="ion-margin-top" expand="block" color="danger">Atualizar
+      <ion-button (click)="updateProfessionalData()" class="ion-margin-top" expand="block" color="primary">Atualizar
         perfil profissional</ion-button>
     </ion-card-content>
   </ion-card>
@@ -107,7 +107,7 @@
               <div class="profile-picture" style="background-image: url('{{ profile_photo }}');"></div>
             </div>
             <div class="ion-text-center">
-              <ion-button size="small" color="danger" (click)="profilePhoto()">Tirar fotografia de perfil</ion-button>
+              <ion-button size="small" color="primary" (click)="profilePhoto()">Tirar fotografia de perfil</ion-button>
             </div>
             <div class="ion-text-center">
               <ion-button (click)="savePhoto()"><ion-icon name="save-outline"></ion-icon></ion-button>
@@ -127,7 +127,7 @@
               </ion-row>
             </ion-grid>
             <div class="ion-text-center">
-              <ion-button size="small" color="danger" (click)="otherPhoto()">Tirar fotografias adicionais</ion-button>
+              <ion-button size="small" color="primary" (click)="otherPhoto()">Tirar fotografias adicionais</ion-button>
             </div>
           </ion-card-content>
         </ion-card>
