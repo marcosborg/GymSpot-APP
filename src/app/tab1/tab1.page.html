@@ -13,8 +13,10 @@
         </ion-card-header>
         <ion-card-content>
           <div *ngIf="!spot.soon">
-            <h2 style="line-height: 14px;"><span style="color: #ffffff; font-size: 25px;">€{{ spot.price }}</span><span
-                style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
+            <h2 style="line-height: 14px;">
+              <span *ngIf="!spot.sale" style="color: #ffffff; font-size: 25px;">€{{ spot.price }}</span>
+              <span *ngIf="spot.sale" style="color: #ffffff; font-size: 25px;">€{{ spot.sale }} | <del style="font-size: 14px;">€{{ spot.price }}</del></span>
+              <span style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
           </div>
           <div *ngIf="spot.soon">
             <h3 class="ion-padding-top">BREVEMENTE</h3>

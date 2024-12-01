@@ -104,7 +104,12 @@ export class CartPage {
               */
               // Calcular o total
               this.totalAmount = this.selectedSlots.reduce((total: number, slot: any) => {
+                if(!slot.spot.sale){
                 return total + parseFloat(slot.spot.price);
+                   
+                } else {
+                  return total + parseFloat(slot.spot.sale);
+                }
               }, 0);
 
               // Salvar slots atualizados nas preferências
