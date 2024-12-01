@@ -12,7 +12,7 @@
             <ion-label style="font-size: 16px;">Reserve um Spot</ion-label>
             <ion-button color="primary" routerLink="/spots">Ver todos</ion-button>
           </ion-list-header>
-          <ion-item button color="light" *ngFor="let spot of spots" routerLink="/spot/{{ spot.id }}">
+          <ion-item button color="light" *ngFor="let spot of spots" (click)="goSpot(spot.id, spot.soon)">
             <ion-avatar class="square" aria-hidden="true" slot="start">
               <img alt=""
                 src="{{ spot.photos ? spot.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}" />
@@ -20,6 +20,7 @@
             <ion-label>
               <h2>{{ spot.name }}</h2>
               <p>{{ spot.location.title }}</p>
+              <ion-note style="font-size: 12px;">{{ spot.soon == true ? 'BREVEMENTE' : '' }}</ion-note>
             </ion-label>
           </ion-item>
           <ion-list-header color="light">

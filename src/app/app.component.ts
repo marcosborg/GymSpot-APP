@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { 
-  IonApp, 
-  IonAvatar, 
-  IonContent, 
-  IonHeader, 
-  IonImg, 
-  IonItem, 
-  IonLabel, 
-  IonList, 
-  IonListHeader, 
-  IonMenu, 
-  IonRouterOutlet, 
-  IonSplitPane, 
-  IonToolbar, 
-  MenuController, 
+import {
+  IonApp,
+  IonAvatar,
+  IonContent,
+  IonHeader,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonMenu,
+  IonRouterOutlet,
+  IonSplitPane,
+  IonToolbar,
+  MenuController,
   IonButton,
-  IonBadge
+  IonBadge,
+  IonNote
 } from '@ionic/angular/standalone';
 import { ApiService } from './services/api.service';
 import { CommonModule } from '@angular/common';
@@ -43,7 +44,8 @@ import { CommonModule } from '@angular/common';
     IonAvatar,
     IonListHeader,
     IonButton,
-    IonBadge
+    IonBadge,
+    IonNote
   ],
 })
 export class AppComponent implements OnInit {
@@ -71,5 +73,11 @@ export class AppComponent implements OnInit {
   menus: any = [];
   spots: any = [];
   pts: any = [];
+
+  goSpot(spot_id: any, soon: any) {
+    if (soon == false) {
+      this.router.navigateByUrl('spot/' + spot_id);
+    }
+  }
 
 }
