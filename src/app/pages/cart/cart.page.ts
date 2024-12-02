@@ -387,4 +387,8 @@ export class CartPage {
     }, 0);
   }
 
+  goLogin() {
+    this.router.navigateByUrl('tabs/tab3');
+  }
+
 }
