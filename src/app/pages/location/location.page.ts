@@ -15,11 +15,11 @@ import { callOutline, locationOutline, mailOutline } from 'ionicons/icons';
   styleUrls: ['./location.page.scss'],
   standalone: true,
   imports: [
-    IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar, 
-    CommonModule, 
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
     HeaderComponent,
     CommonModule,
     IonImg,
@@ -41,7 +41,8 @@ export class LocationPage implements OnInit {
     private api: ApiService,
     public router: Router
   ) {
-      addIcons({locationOutline,callOutline,mailOutline}); }
+    addIcons({ locationOutline, callOutline, mailOutline });
+  }
 
   location_id: any;
   location: any;
@@ -56,6 +57,12 @@ export class LocationPage implements OnInit {
     this.api.getLocation(this.location_id).subscribe((resp: any) => {
       this.location = resp.data;
     });
+  }
+
+  goSpot(spot_id: any, soon: any) {
+    if (soon != true) {
+      this.router.navigateByUrl('spot/' + spot_id);
+    }
   }
 
 }

@@ -4,7 +4,7 @@
     <app-locations></app-locations>
     <h1 class="ion-text-center">{{ location.title }}</h1>
     <div class="ion-text-center">{{ location.subtitle }}</div>
-    <ion-card *ngFor="let spot of location.spots" (click)="router.navigateByUrl('/spot/' + spot.id)">
+    <ion-card *ngFor="let spot of location.spots" (click)="goSpot(spot.id, spot.soon)">
         <ion-img
             src="{{ spot.photos ? spot.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/card-media.png' }}"></ion-img>
         <ion-card-header>
