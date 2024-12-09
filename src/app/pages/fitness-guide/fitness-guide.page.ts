@@ -133,22 +133,22 @@ export class FitnessGuidePage {
   }
 
   sendMessage() {
-    this.loadingController.create().then((loading) => {
-      loading.present();
-      if (this.newMessage.trim()) {
+    if (this.newMessage.trim()) {
+      this.loadingController.create().then((loading) => {
+        loading.present();
         this.messages.push({ text: this.newMessage, sender: 'me' });
-        this.newMessage = '';
         let data = {
           access_token: this.access_token,
           thread_id: this.thread_id,
-          message: this.newMessage.trim()
+          message: this.newMessage
         }
         this.api.sendMessage(data).subscribe((resp: any) => {
           this.messages.push({ text: resp.data[0].content[0].text.value, sender: 'bot' });
           loading.dismiss();
+          this.newMessage = '';
         });
-      }
-    });
+      });
+    }
   }
 
 }

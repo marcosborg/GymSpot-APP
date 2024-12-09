@@ -19,8 +19,7 @@
       <!-- Lista de mensagens -->
       <div class="chat-container">
         <div *ngFor="let message of messages"
-          [ngClass]="{'outgoing': message.sender === 'me', 'incoming': message.sender !== 'me'}" class="chat-bubble">
-          {{ message.text }}
+          [ngClass]="{'outgoing': message.sender === 'me', 'incoming': message.sender !== 'me'}" class="chat-bubble" [innerHtml]="message.text">
         </div>
       </div>
 
