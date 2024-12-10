@@ -353,4 +353,8 @@ export class Tab3Page implements OnInit {
   goPersonalTrainer() {
     this.router.navigateByUrl('personal-trainer-area');
   }
+
+  delAccount() {
+    window.location.href="https://gymspot.pt/profile/password";
+  }
 }

@@ -75,6 +75,9 @@
                     conta</ion-button>
                 <ion-button class="ion-margin" size="small" fill="clear" expand="full"
                     (click)="logout()">Logout</ion-button>
+                <ion-button class="ion-margin" color="danger" size="small" fill="clear" expand="full"
+                    (click)="delAccount()"><small>Eliminar
+                        conta</small></ion-button>
             </ion-card-content>
         </ion-card>
         <ion-card>
@@ -117,7 +120,8 @@
                 <h1 class="ion-text-center">Fazer upgrade para Personal trainer</h1>
             </ion-card-header>
             <ion-card-content>
-                <ion-button color="primary" expand="block" (click)="goPersonalTrainer()">Ir para área de personal trainer</ion-button>
+                <ion-button color="primary" expand="block" (click)="goPersonalTrainer()">Ir para área de personal
+                    trainer</ion-button>
             </ion-card-content>
         </ion-card>
         <app-cart-button />
