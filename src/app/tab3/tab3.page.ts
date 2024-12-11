@@ -355,6 +355,32 @@ export class Tab3Page implements OnInit {
   }
 
   delAccount() {
-    window.location.href="https://gymspot.pt/profile/password";
+    this.alertController.create({
+      message: 'Tem a certeza? O processo é irreversível.',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Sim. Quero prosseguir',
+          handler: () => {
+            let data = {
+              access_token: this.access_token
+            }
+            this.api.deleteAccount(data).subscribe(() => {
+              this.alertController.create({
+                message: 'Obrigado. Vamos proceder à eliminação da conta e de todo o seu histórico.',
+              }).then((alert) => {
+                alert.present();
+              });
+            });
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    });
   }
 }

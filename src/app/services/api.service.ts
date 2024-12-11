@@ -276,4 +276,14 @@ export class ApiService {
     return this.http.post(this.auth_url + 'guia-fitness/send-message', data, this.httpOptions);
   }
 
+  deleteAccount(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.auth_url + 'delete-account', data, this.httpOptions);
+  }
+
 }
